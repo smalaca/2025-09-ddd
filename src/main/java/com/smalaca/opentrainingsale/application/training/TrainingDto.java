@@ -1,4 +1,6 @@
 package com.smalaca.opentrainingsale.application.training;
 
-public record TrainingDto(String trainingCode) {
+import java.math.BigDecimal;
+
+public record TrainingDto(String trainingCode, BigDecimal price) {
 }
