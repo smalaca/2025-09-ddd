@@ -21,7 +21,8 @@ public class TrainingApplicationService {
         TrainingCode trainingCode = new TrainingCode(dto.trainingCode());
         Price price = new Price(dto.price());
         Period period = new Period(dto.startDate(), dto.endDate());
-        TrainingDomainDto trainingDomainDto = new TrainingDomainDto(trainingCode, price, period);
+        TrainingDomainDto trainingDomainDto = new TrainingDomainDto(
+                trainingCode, price, period, dto.minimumParticipants(), dto.maximumParticipants());
 
         Training training = trainingFactory.create(trainingDomainDto);
 

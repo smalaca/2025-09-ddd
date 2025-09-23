@@ -4,11 +4,15 @@ public class Training {
     private final TrainingCode trainingCode;
     private final Price price;
     private final Period period;
+    private final int minimumParticipants;
+    private final int maximumParticipants;
 
     private Training(TrainingBuilder builder) {
         this.trainingCode = builder.trainingCode;
         this.price = builder.price;
         this.period = builder.period;
+        this.minimumParticipants = builder.minimumParticipants;
+        this.maximumParticipants = builder.maximumParticipants;
     }
 
     // factory
@@ -16,6 +20,13 @@ public class Training {
         private TrainingCode trainingCode;
         private Price price;
         private Period period;
+        private int minimumParticipants;
+        private int maximumParticipants;
+
+        Training build() {
+            // additional validation if needed
+            return new Training(this);
+        }
 
         TrainingBuilder trainingCode(TrainingCode trainingCode) {
             this.trainingCode = trainingCode;
@@ -32,9 +43,14 @@ public class Training {
             return this;
         }
 
-        Training build() {
-            // additional validation if needed
-            return new Training(this);
+        TrainingBuilder minimumParticipants(int minimumParticipants) {
+            this.minimumParticipants = minimumParticipants;
+            return this;
+        }
+
+        TrainingBuilder maximumParticipants(int maximumParticipants) {
+            this.maximumParticipants = maximumParticipants;
+            return this;
         }
     }
 }
