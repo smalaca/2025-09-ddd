@@ -5,7 +5,7 @@ public class Training {
     private final Price price;
     private final Period period;
 
-    public Training(TrainingCode trainingCode, Price price, Period period) {
+    Training(TrainingCode trainingCode, Price price, Period period) {
         this.trainingCode = trainingCode;
         this.price = price;
         this.period = period;
