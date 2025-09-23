@@ -1,0 +1,26 @@
+package com.smalaca.trainingoffer.application.trainingproposition;
+
+import com.smalaca.trainingoffer.domain.trainingproposition.TrainingProposition;
+import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionRepository;
+import jakarta.transaction.Transactional;
+
+public class TrainingPropositionApplicationService {
+    private final TrainingPropositionRepository trainingPropositionRepository;
+
+    public TrainingPropositionApplicationService(TrainingPropositionRepository trainingPropositionRepository) {
+        this.trainingPropositionRepository = trainingPropositionRepository;
+    }
+
+    @Transactional
+    public void proposeTraining() {
+        // tłumaczenie na język domenowy [0..*]
+        // id na aggregaty
+        // typy proste na value objects
+
+        // interakcja z domeną - 1 linia kodu
+        TrainingProposition trainingProposition = new TrainingProposition();
+
+        // zapis agregatów lub publikowanie zdarzeń [1..*]
+        trainingPropositionRepository.save(trainingProposition);
+    }
+}
