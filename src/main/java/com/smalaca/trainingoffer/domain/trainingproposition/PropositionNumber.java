@@ -4,10 +4,10 @@ import java.util.UUID;
 
 // value object
 public class PropositionNumber {
-    private final String value;
+    private final String propositionNumber;
 
-    private PropositionNumber(String value) {
-        this.value = value;
+    private PropositionNumber(String propositionNumber) {
+        this.propositionNumber = propositionNumber;
     }
 
     // factory
