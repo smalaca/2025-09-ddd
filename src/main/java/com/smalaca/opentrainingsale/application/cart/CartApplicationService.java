@@ -2,9 +2,11 @@ package com.smalaca.opentrainingsale.application.cart;
 
 import com.smalaca.opentrainingsale.domain.cart.Cart;
 import com.smalaca.opentrainingsale.domain.cart.CartRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class CartApplicationService {
     private final CartRepository cartRepository;
 
