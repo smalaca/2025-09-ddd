@@ -21,8 +21,9 @@ public class TrainingPropositionApplicationService {
 
         // interakcja z domeną - 1 linia kodu
         TrainingProposition trainingProposition = new TrainingPropositionFactory().create(dto);
+// Other possible options:
+//        TrainingProposition trainingProposition = new TrainingPropositionBuilder().title().description().build();
 //        TrainingProposition trainingProposition = TrainingProposition.create(dto);
-//        TrainingProposition trainingProposition = new TrainingProposition(dto.trainerId(), dto.title(), dto.description());
 
         // zapis agregatów lub publikowanie zdarzeń [1..*]
         trainingPropositionRepository.save(trainingProposition);

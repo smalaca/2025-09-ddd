@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.UUID;
 
 public record TrainingPropositionDto(
-        UUID trainerId,
+        String trainerCode,
         @Validated String title,
         @Validated String description) {
 }
