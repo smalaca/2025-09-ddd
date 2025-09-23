@@ -4,6 +4,7 @@ import com.smalaca.opentrainingsale.domain.training.Period;
 import com.smalaca.opentrainingsale.domain.training.Price;
 import com.smalaca.opentrainingsale.domain.training.Training;
 import com.smalaca.opentrainingsale.domain.training.TrainingCode;
+import com.smalaca.opentrainingsale.domain.training.TrainingDomainDto;
 import com.smalaca.opentrainingsale.domain.training.TrainingFactory;
 import com.smalaca.opentrainingsale.domain.training.TrainingRepository;
 
@@ -20,8 +21,9 @@ public class TrainingApplicationService {
         TrainingCode trainingCode = new TrainingCode(dto.trainingCode());
         Price price = new Price(dto.price());
         Period period = new Period(dto.startDate(), dto.endDate());
+        TrainingDomainDto trainingDomainDto = new TrainingDomainDto(trainingCode, price, period);
 
-        Training training = trainingFactory.create(trainingCode, price, period);
+        Training training = trainingFactory.create(trainingDomainDto);
 
         trainingRepository.save(training);
     }

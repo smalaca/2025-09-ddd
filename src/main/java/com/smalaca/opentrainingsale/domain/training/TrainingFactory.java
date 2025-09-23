@@ -2,7 +2,7 @@ package com.smalaca.opentrainingsale.domain.training;
 
 // factory
 public class TrainingFactory {
-    public Training create(TrainingCode trainingCode, Price price, Period period) {
-        return new Training(trainingCode, price, period);
+    public Training create(TrainingDomainDto dto) {
+        return new Training(dto.trainingCode(), dto.price(), dto.period());
     }
 }
