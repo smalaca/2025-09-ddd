@@ -15,7 +15,5 @@ public class TrainingPropisitionRestController {
 
     @PostMapping
     public void proposeTraining(@RequestBody TrainingPropositionDto dto) {
-        final com.smalaca.trainingoffer.application.trainingproposition.TrainingPropositionDto trainingPropositionDto = new com.smalaca.trainingoffer.application.trainingproposition.TrainingPropositionDto(trainerId, title, description);
-        applicationService.proposeTraining();
     }
 }
