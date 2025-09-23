@@ -12,13 +12,13 @@ public class TrainingPropositionApplicationService {
     }
 
     @Transactional
-    public void proposeTraining() {
+    public void proposeTraining(String title, String description) {
         // tłumaczenie na język domenowy [0..*]
         // id na aggregaty
         // typy proste na value objects
 
         // interakcja z domeną - 1 linia kodu
-        TrainingProposition trainingProposition = new TrainingProposition();
+        TrainingProposition trainingProposition = new TrainingProposition(title, description);
 
         // zapis agregatów lub publikowanie zdarzeń [1..*]
         trainingPropositionRepository.save(trainingProposition);
