@@ -5,6 +5,7 @@ import com.smalaca.trainingoffer.domain.training.TrainingDomainService;
 import com.smalaca.trainingoffer.domain.training.TrainingRepository;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 public class TrainingApplicationService {
@@ -21,9 +22,8 @@ public class TrainingApplicationService {
         Training trainingOne = trainingRepository.findById(trainingIdOne);
         Training trainingTwo = trainingRepository.findById(trainingIdTwo);
 
-        trainingDomainService.switchGuardians(trainingOne, trainingTwo);
+        List<Training> trainings = trainingDomainService.switchGuardians(trainingOne, trainingTwo);
 
-        trainingRepository.save(trainingOne);
-        trainingRepository.save(trainingTwo);
+        trainings.forEach(trainingRepository::save);
     }
 }

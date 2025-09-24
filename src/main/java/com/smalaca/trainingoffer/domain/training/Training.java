@@ -6,11 +6,11 @@ import java.util.UUID;
 public class Training {
     private UUID guardianId;
 
-    public UUID guardianId() {
+    UUID guardianId() {
         return guardianId;
     }
 
-    public void updateGuardian(UUID guardianId) {
+    void updateGuardian(UUID guardianId) {
         this.guardianId = guardianId;
     }
 }
