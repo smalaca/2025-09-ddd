@@ -4,11 +4,11 @@ import com.smalaca.opentrainingsale.domain.registrationsummary.RegistrationSumma
 import com.smalaca.opentrainingsale.domain.sale.Sale;
 import com.smalaca.opentrainingsale.domain.training.Training;
 
-public class RegistrationConfirmationDomainService {
-    public RegistrationConfirmedDto confirm(RegistrationSummary registrationSummary, Training training) {
+public class RegistrationSummaryConfirmationDomainService {
+    public RegistrationSummaryConfirmedDto confirm(RegistrationSummary registrationSummary, Training training) {
         Sale sale = registrationSummary.confirm();
         training.confirmAttendance(registrationSummary.participantId());
 
-        return new RegistrationConfirmedDto(registrationSummary, training, sale);
+        return new RegistrationSummaryConfirmedDto(registrationSummary, training, sale);
     }
 }

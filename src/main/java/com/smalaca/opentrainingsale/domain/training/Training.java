@@ -48,6 +48,10 @@ public class Training {
         return (participants.size() + reservation.size()) >= maximumParticipants;
     }
 
+    public UUID trainingId() {
+        return trainingId;
+    }
+
     // factory
     static class TrainingBuilder {
         private TrainingCode trainingCode;

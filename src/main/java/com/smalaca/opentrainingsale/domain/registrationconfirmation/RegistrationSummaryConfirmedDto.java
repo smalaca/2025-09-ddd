@@ -4,5 +4,5 @@ import com.smalaca.opentrainingsale.domain.registrationsummary.RegistrationSumma
 import com.smalaca.opentrainingsale.domain.sale.Sale;
 import com.smalaca.opentrainingsale.domain.training.Training;
 
-public record RegistrationConfirmedDto(RegistrationSummary registrationSummary, Training training, Sale sale) {
+public record RegistrationSummaryConfirmedDto(RegistrationSummary registrationSummary, Training training, Sale sale) {
 }

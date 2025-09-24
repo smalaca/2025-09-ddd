@@ -6,6 +6,8 @@ import com.smalaca.opentrainingsale.domain.registrationsummary.RegistrationSumma
 import com.smalaca.opentrainingsale.domain.registrationsummary.RegistrationSummaryRepository;
 import com.smalaca.opentrainingsale.domain.training.Training;
 import com.smalaca.opentrainingsale.domain.training.TrainingRepository;
+import com.smalaca.opentrainingsale.domain.trainingregistration.RegistrationConfirmedDto;
+import com.smalaca.opentrainingsale.domain.trainingregistration.TrainingRegistrationDomainService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ public class CartApplicationService {
     private final CartRepository cartRepository;
     private final TrainingRepository trainingRepository;
     private final RegistrationSummaryRepository registrationSummaryRepository;
+    private final TrainingRegistrationDomainService trainingRegistrationDomainService;
 
-    public CartApplicationService(CartRepository cartRepository, TrainingRepository trainingRepository, RegistrationSummaryRepository registrationSummaryRepository) {
+    public CartApplicationService(CartRepository cartRepository, TrainingRepository trainingRepository, RegistrationSummaryRepository registrationSummaryRepository, TrainingRegistrationDomainService trainingRegistrationDomainService) {
         this.cartRepository = cartRepository;
         this.trainingRepository = trainingRepository;
         this.registrationSummaryRepository = registrationSummaryRepository;
+        this.trainingRegistrationDomainService = trainingRegistrationDomainService;
     }
 
     @Transactional
@@ -37,11 +41,10 @@ public class CartApplicationService {
         Cart cart = cartRepository.findById(cartId);
         Training training = trainingRepository.findById(trainingId);
 
-        cart.remove(trainingId);
-        RegistrationSummary registrationSummary = training.register(participantId);
+        RegistrationConfirmedDto dto = trainingRegistrationDomainService.confirm(cart, training, participantId);
 
-        cartRepository.save(cart);
-        trainingRepository.save(training);
-        registrationSummaryRepository.save(registrationSummary);
+        cartRepository.save(dto.cart());
+        trainingRepository.save(dto.training());
+        registrationSummaryRepository.save(dto.registrationSummary());
     }
 }
