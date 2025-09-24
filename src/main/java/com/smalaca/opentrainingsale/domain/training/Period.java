@@ -2,6 +2,7 @@ package com.smalaca.opentrainingsale.domain.training;
 
 import java.time.LocalDate;
 
+// value object
 public final class Period {
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -11,6 +12,7 @@ public final class Period {
         this.endDate = endDate;
     }
 
+    // factory
     public static Period from(LocalDate startDate, LocalDate endDate) {
         if (LocalDate.now().isAfter(startDate)) {
             throw PeriodException.startInPast(startDate);
