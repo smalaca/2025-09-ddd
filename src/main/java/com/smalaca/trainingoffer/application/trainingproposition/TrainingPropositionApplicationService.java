@@ -9,6 +9,7 @@ import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplate;
 import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplateRepository;
 import jakarta.transaction.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class TrainingPropositionApplicationService {
