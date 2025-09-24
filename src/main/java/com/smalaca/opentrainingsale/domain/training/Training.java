@@ -26,6 +26,18 @@ public class Training {
         private int maximumParticipants;
 
         Training build() {
+            if (minimumParticipants < 5) {
+                throw TrainingException.tooFewMinimumParticipants(minimumParticipants);
+            }
+
+            if (maximumParticipants > 30) {
+                throw TrainingException.tooManyMaximumParticipants(maximumParticipants);
+            }
+
+            if (minimumParticipants > maximumParticipants) {
+                throw TrainingException.invalidParticipantsNumber(minimumParticipants, maximumParticipants);
+            }
+
             if (ChronoUnit.DAYS.between(period.startDate(), period.endDate()) > 5) {
                 throw TrainingException.tooLongTraining(period);
             }
