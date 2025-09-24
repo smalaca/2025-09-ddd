@@ -1,6 +1,9 @@
 package com.smalaca.opentrainingsale.domain.training;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Training {
     private final TrainingCode trainingCode;
@@ -8,6 +11,7 @@ public class Training {
     private final Period period;
     private final int minimumParticipants;
     private final int maximumParticipants;
+    private final List<UUID> participants = new ArrayList<>();
 
     private Training(TrainingBuilder builder) {
         this.trainingCode = builder.trainingCode;
@@ -15,6 +19,10 @@ public class Training {
         this.period = builder.period;
         this.minimumParticipants = builder.minimumParticipants;
         this.maximumParticipants = builder.maximumParticipants;
+    }
+
+    public void confirmAttendance(UUID participantId) {
+        participants.add(participantId);
     }
 
     // factory
