@@ -1,7 +1,6 @@
 package com.smalaca.opentrainingsale.domain.training;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public final class Period {
     private final LocalDate start;
@@ -15,6 +14,10 @@ public final class Period {
     public static Period from(LocalDate startDate, LocalDate endDate) {
         if (LocalDate.now().isAfter(startDate)) {
             throw PeriodException.startInPast(startDate);
+        }
+
+        if (startDate.isAfter(endDate)) {
+            throw PeriodException.endsBeforeStarts(startDate, endDate);
         }
 
         return new Period(startDate, endDate);

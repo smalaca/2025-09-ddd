@@ -10,4 +10,8 @@ class PeriodException extends RuntimeException {
     static PeriodException startInPast(LocalDate startDate) {
         return new PeriodException("Start date is from past: " + startDate);
     }
+
+    static PeriodException endsBeforeStarts(LocalDate startDate, LocalDate endDate) {
+        return new PeriodException("End date is before start date: " + startDate + " - " + endDate);
+    }
 }
