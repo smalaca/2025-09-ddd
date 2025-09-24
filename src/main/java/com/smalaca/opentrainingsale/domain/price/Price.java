@@ -1,4 +1,4 @@
-package com.smalaca.opentrainingsale.domain.training;
+package com.smalaca.opentrainingsale.domain.price;
 
 import java.math.BigDecimal;
 

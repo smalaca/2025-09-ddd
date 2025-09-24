@@ -1,7 +1,7 @@
 package com.smalaca.opentrainingsale.application.training;
 
 import com.smalaca.opentrainingsale.domain.training.Period;
-import com.smalaca.opentrainingsale.domain.training.Price;
+import com.smalaca.opentrainingsale.domain.price.Price;
 import com.smalaca.opentrainingsale.domain.training.Training;
 import com.smalaca.opentrainingsale.domain.training.TrainingCode;
 import com.smalaca.opentrainingsale.domain.training.TrainingDomainDto;

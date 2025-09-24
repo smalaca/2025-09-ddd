@@ -1,5 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
+import com.smalaca.opentrainingsale.domain.price.Price;
+
 import java.util.UUID;
 
 public record TrainingDomainDto(

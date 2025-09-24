@@ -1,5 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
+import java.util.UUID;
+
 class TrainingException extends RuntimeException {
     private TrainingException(String message) {
         super(message);
@@ -29,5 +31,9 @@ class TrainingException extends RuntimeException {
         return new TrainingException(
                 "Trainer: " + dto.trainerId() + " cannot conduct training with code: " + dto.trainingCode().trainingCode() + ", " +
                 "starting at: " + dto.period().startDate() + ", ending at: " + dto.period().endDate() + ".");
+    }
+
+    static TrainingException maximumGroupSizeReached(int maximumParticipants, UUID participantId) {
+        return new TrainingException("Maximum group size reached. Maximum: " + maximumParticipants + ", participant: " + participantId);
     }
 }

@@ -1,5 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
+import com.smalaca.opentrainingsale.domain.price.Price;
+
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,10 @@ public class Training {
     }
 
     public void confirmAttendance(UUID participantId) {
+        if (participants.size() >= maximumParticipants) {
+            throw TrainingException.maximumGroupSizeReached(maximumParticipants, participantId);
+        }
+
         participants.add(participantId);
     }
 
