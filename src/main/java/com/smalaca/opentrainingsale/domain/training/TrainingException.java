@@ -20,4 +20,8 @@ class TrainingException extends RuntimeException {
     static TrainingException invalidParticipantsNumber(int minimumParticipants, int maximumParticipants) {
         return new TrainingException("Minimum participants must be less than maximum participants. Minimum: " + minimumParticipants + ", maximum: " + maximumParticipants);
     }
+
+    static TrainingException notExistingTrainingCode(TrainingCode trainingCode) {
+        return new TrainingException("Training with code: " + trainingCode + " not found");
+    }
 }
