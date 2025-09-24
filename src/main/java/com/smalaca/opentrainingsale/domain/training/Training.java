@@ -1,5 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
+import java.time.temporal.ChronoUnit;
+
 public class Training {
     private final TrainingCode trainingCode;
     private final Price price;
@@ -24,7 +26,10 @@ public class Training {
         private int maximumParticipants;
 
         Training build() {
-            // additional validation if needed
+            if (ChronoUnit.DAYS.between(period.startDate(), period.endDate()) > 5) {
+                throw TrainingException.tooLongTraining(period);
+            }
+
             return new Training(this);
         }
 

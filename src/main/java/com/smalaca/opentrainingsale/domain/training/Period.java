@@ -3,12 +3,12 @@ package com.smalaca.opentrainingsale.domain.training;
 import java.time.LocalDate;
 
 public final class Period {
-    private final LocalDate start;
-    private final LocalDate end;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
-    private Period(LocalDate start, LocalDate end) {
-        this.start = start;
-        this.end = end;
+    private Period(LocalDate startDate, LocalDate endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public static Period from(LocalDate startDate, LocalDate endDate) {
@@ -21,5 +21,13 @@ public final class Period {
         }
 
         return new Period(startDate, endDate);
+    }
+
+    LocalDate startDate() {
+        return startDate;
+    }
+
+    LocalDate endDate() {
+        return endDate;
     }
 }
