@@ -1,5 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
+import java.util.UUID;
+
 public record TrainingDomainDto(
-        TrainingCode trainingCode, Price price, Period period, int minimumParticipants, int maximumParticipants) {
+        UUID trainerId, TrainingCode trainingCode, Price price, Period period, int minimumParticipants, int maximumParticipants) {
 }

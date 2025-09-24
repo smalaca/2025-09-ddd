@@ -22,7 +22,7 @@ public class TrainingApplicationService {
         Price price = Price.from(dto.price());
         Period period = Period.from(dto.startDate(), dto.endDate());
         TrainingDomainDto trainingDomainDto = new TrainingDomainDto(
-                trainingCode, price, period, dto.minimumParticipants(), dto.maximumParticipants());
+                dto.trainerId(), trainingCode, price, period, dto.minimumParticipants(), dto.maximumParticipants());
 
         Training training = trainingFactory.create(trainingDomainDto);
 

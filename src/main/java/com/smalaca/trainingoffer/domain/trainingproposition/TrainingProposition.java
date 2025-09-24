@@ -1,6 +1,6 @@
 package com.smalaca.trainingoffer.domain.trainingproposition;
 
-import com.smalaca.trainingoffer.domain.trainingcatalogue.TrainingCatalogue;
+import com.smalaca.trainingoffer.domain.trainerscatalogue.TrainersCatalogue;
 import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplate;
 
 import java.util.UUID;
@@ -24,8 +24,8 @@ public class TrainingProposition {
     }
 
     // factory
-    public TrainingTemplate accept(UUID reviewerId, TrainingCatalogue trainingCatalogue) {
-        if (trainingCatalogue.isAllowedToReview(reviewerId)) {
+    public TrainingTemplate accept(UUID reviewerId, TrainersCatalogue trainersCatalogue) {
+        if (trainersCatalogue.isAllowedToReview(reviewerId)) {
             this.status = TrainingPropositionStatus.ACCEPTED;
             this.reviewerId = reviewerId;
 

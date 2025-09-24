@@ -22,6 +22,12 @@ class TrainingException extends RuntimeException {
     }
 
     static TrainingException notExistingTrainingCode(TrainingCode trainingCode) {
-        return new TrainingException("Training with code: " + trainingCode + " not found");
+        return new TrainingException("Training with code: " + trainingCode.trainingCode() + " not found");
+    }
+
+    static TrainingException trainerCannotConductTraining(TrainingDomainDto dto) {
+        return new TrainingException(
+                "Trainer: " + dto.trainerId() + " cannot conduct training with code: " + dto.trainingCode().trainingCode() + ", " +
+                "starting at: " + dto.period().startDate() + ", ending at: " + dto.period().endDate() + ".");
     }
 }

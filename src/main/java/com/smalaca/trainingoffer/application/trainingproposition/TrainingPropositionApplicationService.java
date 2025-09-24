@@ -1,6 +1,6 @@
 package com.smalaca.trainingoffer.application.trainingproposition;
 
-import com.smalaca.trainingoffer.domain.trainingcatalogue.TrainingCatalogue;
+import com.smalaca.trainingoffer.domain.trainerscatalogue.TrainersCatalogue;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingProposition;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionDto;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionFactory;
@@ -14,12 +14,12 @@ import java.util.UUID;
 public class TrainingPropositionApplicationService {
     private final TrainingPropositionRepository trainingPropositionRepository;
     private final TrainingTemplateRepository trainingTemplateRepository;
-    private final TrainingCatalogue trainingCatalogue;
+    private final TrainersCatalogue trainersCatalogue;
 
-    public TrainingPropositionApplicationService(TrainingPropositionRepository trainingPropositionRepository, TrainingTemplateRepository trainingTemplateRepository, TrainingCatalogue trainingCatalogue) {
+    public TrainingPropositionApplicationService(TrainingPropositionRepository trainingPropositionRepository, TrainingTemplateRepository trainingTemplateRepository, TrainersCatalogue trainersCatalogue) {
         this.trainingPropositionRepository = trainingPropositionRepository;
         this.trainingTemplateRepository = trainingTemplateRepository;
-        this.trainingCatalogue = trainingCatalogue;
+        this.trainersCatalogue = trainersCatalogue;
     }
 
     @Transactional
@@ -43,7 +43,7 @@ public class TrainingPropositionApplicationService {
         TrainingProposition trainingProposition = trainingPropositionRepository.findById(trainingPropositionId);
 
         // interakcja z domeną - 1 linia kodu
-        TrainingTemplate trainingTemplate = trainingProposition.accept(reviewerId, trainingCatalogue);
+        TrainingTemplate trainingTemplate = trainingProposition.accept(reviewerId, trainersCatalogue);
 
         trainingPropositionRepository.save(trainingProposition);
         trainingTemplateRepository.save(trainingTemplate);
