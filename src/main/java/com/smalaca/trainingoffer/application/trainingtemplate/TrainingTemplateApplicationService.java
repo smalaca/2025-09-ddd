@@ -1,6 +1,6 @@
 package com.smalaca.trainingoffer.application.trainingtemplate;
 
-import com.smalaca.trainingoffer.domain.trainingproposition.TrainingProposition;
+import com.smalaca.trainingoffer.domain.trainingtemplate.Price;
 import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplate;
 import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplateRepository;
 import jakarta.transaction.Transactional;
@@ -12,6 +12,16 @@ public class TrainingTemplateApplicationService {
 
     public TrainingTemplateApplicationService(TrainingTemplateRepository trainingTemplateRepository) {
         this.trainingTemplateRepository = trainingTemplateRepository;
+    }
+
+    @Transactional
+    public void update(UpdateTrainingTemplateDto dto) {
+        TrainingTemplate trainingTemplate = trainingTemplateRepository.findById(dto.trainingTemplateId());
+        Price price = Price.from(dto.price());
+
+        trainingTemplate.update(price, dto.trainingDays());
+
+        trainingTemplateRepository.save(trainingTemplate);
     }
 
     @Transactional
