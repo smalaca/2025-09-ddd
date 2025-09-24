@@ -1,6 +1,7 @@
 package com.smalaca.opentrainingsale.domain.training;
 
 import com.smalaca.opentrainingsale.domain.price.Price;
+import com.smalaca.opentrainingsale.domain.registrationsummary.RegistrationSummary;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -8,11 +9,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Training {
+    private UUID trainingId;
     private final TrainingCode trainingCode;
     private final Price price;
     private final Period period;
     private final int minimumParticipants;
     private final int maximumParticipants;
+    private final List<UUID> reservation = new ArrayList<>();
     private final List<UUID> participants = new ArrayList<>();
 
     private Training(TrainingBuilder builder) {
@@ -28,7 +31,21 @@ public class Training {
             throw TrainingException.maximumGroupSizeReached(maximumParticipants, participantId);
         }
 
+        reservation.remove(participantId);
         participants.add(participantId);
+    }
+
+    public RegistrationSummary register(UUID participantId) {
+        if (hasNoPlacesLeft()) {
+            throw TrainingException.maximumGroupSizeReached(maximumParticipants, participantId);
+        }
+        reservation.add(participantId);
+
+        return new RegistrationSummary(trainingId, participantId, price);
+    }
+
+    private boolean hasNoPlacesLeft() {
+        return (participants.size() + reservation.size()) >= maximumParticipants;
     }
 
     // factory

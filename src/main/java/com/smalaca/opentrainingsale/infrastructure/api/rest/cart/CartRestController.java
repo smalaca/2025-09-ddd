@@ -20,7 +20,7 @@ public class CartRestController {
     @PostMapping
     public void addToCart(@RequestBody AddToCartCommand command, HttpSession httpSession) {
         UUID cartId = cartId(command, httpSession);
-        applicationService.addToCart(cartId);
+        applicationService.addToCart(cartId, command.trainingId());
     }
 
     private UUID cartId(AddToCartCommand command, HttpSession httpSession) {

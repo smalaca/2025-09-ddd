@@ -12,6 +12,12 @@ public class RegistrationSummary {
     private Price price;
     private RegistrationSummaryStatus status;
 
+    public RegistrationSummary(UUID trainingId, UUID participantId, Price price) {
+        this.trainingId = trainingId;
+        this.participantId = participantId;
+        this.price = price;
+    }
+
     public UUID trainingId() {
         return trainingId;
     }
