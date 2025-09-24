@@ -20,7 +20,7 @@ public class TrainingApplicationService {
     public void addToOffer(TrainingDto dto) {
         TrainingCode trainingCode = new TrainingCode(dto.trainingCode());
         Price price = Price.from(dto.price());
-        Period period = new Period(dto.startDate(), dto.endDate());
+        Period period = Period.from(dto.startDate(), dto.endDate());
         TrainingDomainDto trainingDomainDto = new TrainingDomainDto(
                 trainingCode, price, period, dto.minimumParticipants(), dto.maximumParticipants());
 
