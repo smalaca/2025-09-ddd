@@ -1,6 +1,7 @@
 package com.smalaca.trainingoffer.domain.trainingproposition;
 
 import com.smalaca.trainingoffer.domain.trainingcatalogue.TrainingCatalogue;
+import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplate;
 
 import java.util.UUID;
 
@@ -22,10 +23,13 @@ public class TrainingProposition {
         this.description = description;
     }
 
-    public void accept(UUID reviewerId, TrainingCatalogue trainingCatalogue) {
+    // factory
+    public TrainingTemplate accept(UUID reviewerId, TrainingCatalogue trainingCatalogue) {
         if (trainingCatalogue.isAllowedToReview(reviewerId)) {
             this.status = TrainingPropositionStatus.ACCEPTED;
             this.reviewerId = reviewerId;
+
+            return TrainingTemplate.create(trainingPropositionId, title, description, trainerCode);
         } else {
             throw new TrainingPropositionException("Reviewer: " + reviewerId + " not allowed to accept training proposition: " + trainingPropositionId);
         }

@@ -5,16 +5,20 @@ import com.smalaca.trainingoffer.domain.trainingproposition.TrainingProposition;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionDto;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionFactory;
 import com.smalaca.trainingoffer.domain.trainingproposition.TrainingPropositionRepository;
+import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplate;
+import com.smalaca.trainingoffer.domain.trainingtemplate.TrainingTemplateRepository;
 import jakarta.transaction.Transactional;
 
 import java.util.UUID;
 
 public class TrainingPropositionApplicationService {
     private final TrainingPropositionRepository trainingPropositionRepository;
+    private final TrainingTemplateRepository trainingTemplateRepository;
     private final TrainingCatalogue trainingCatalogue;
 
-    public TrainingPropositionApplicationService(TrainingPropositionRepository trainingPropositionRepository, TrainingCatalogue trainingCatalogue) {
+    public TrainingPropositionApplicationService(TrainingPropositionRepository trainingPropositionRepository, TrainingTemplateRepository trainingTemplateRepository, TrainingCatalogue trainingCatalogue) {
         this.trainingPropositionRepository = trainingPropositionRepository;
+        this.trainingTemplateRepository = trainingTemplateRepository;
         this.trainingCatalogue = trainingCatalogue;
     }
 
@@ -39,8 +43,9 @@ public class TrainingPropositionApplicationService {
         TrainingProposition trainingProposition = trainingPropositionRepository.findById(trainingPropositionId);
 
         // interakcja z domeną - 1 linia kodu
-        trainingProposition.accept(reviewerId, trainingCatalogue);
+        TrainingTemplate trainingTemplate = trainingProposition.accept(reviewerId, trainingCatalogue);
 
         trainingPropositionRepository.save(trainingProposition);
+        trainingTemplateRepository.save(trainingTemplate);
     }
 }
